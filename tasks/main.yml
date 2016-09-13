@@ -1,0 +1,11 @@
+---
+
+- name: install Python PIP
+  yum: name=python-pip state=present
+
+# We need PIP version for Ansible docker-service module.
+- name: install docker-compose and dependencies
+  pip: name={{ item }} state=present
+  with_items:
+    - docker-compose
+    - "backports.ssl-match-hostname>=3.5"
